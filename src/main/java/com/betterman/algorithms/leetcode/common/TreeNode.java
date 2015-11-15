@@ -1,4 +1,4 @@
-package com.zhuangda.leetcode.common;
+package com.betterman.algorithms.leetcode.common;
 
 /**
  * Created by zhuangda on 11/11/15.

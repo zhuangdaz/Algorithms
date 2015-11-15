@@ -1,4 +1,4 @@
-package com.zhuangda.interview.airbnb;
+package com.betterman.algorithms.interview.airbnb;
 
 /**
  * Created by zhuangda on 11/1/15.

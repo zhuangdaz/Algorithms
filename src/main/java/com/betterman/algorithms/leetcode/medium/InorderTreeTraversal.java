@@ -1,6 +1,6 @@
-package com.zhuangda.leetcode.medium;
+package com.betterman.algorithms.leetcode.medium;
 
-import com.zhuangda.leetcode.common.TreeNode;
+import com.betterman.algorithms.leetcode.common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

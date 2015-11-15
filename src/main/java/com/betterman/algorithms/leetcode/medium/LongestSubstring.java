@@ -1,4 +1,4 @@
-package com.zhuangda.leetcode.medium;
+package com.betterman.algorithms.leetcode.medium;
 
 import java.util.HashMap;
 

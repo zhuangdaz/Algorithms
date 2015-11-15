@@ -1,4 +1,4 @@
-package com.zhuangda.interview.airbnb;
+package com.betterman.algorithms.interview.airbnb;
 
 import java.util.ArrayList;
 

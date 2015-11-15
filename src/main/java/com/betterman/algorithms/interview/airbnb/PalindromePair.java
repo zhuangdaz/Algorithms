@@ -1,6 +1,6 @@
-package com.zhuangda.interview.airbnb;
+package com.betterman.algorithms.interview.airbnb;
 
-import com.zhuangda.leetcode.hard.ShortestPalindrome;
+import com.betterman.algorithms.leetcode.hard.ShortestPalindrome;
 
 import java.util.*;
 
