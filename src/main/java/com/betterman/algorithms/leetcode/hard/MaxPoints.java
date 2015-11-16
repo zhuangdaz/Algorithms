@@ -21,8 +21,11 @@ public class MaxPoints {
      */
     public static class Solution {
         public int maxPoints(Point[] points) {
+            if (points.length < 3) return points.length; // 0/1/2 points
             int max = 0;
             for (int i = 0; i < points.length; i++) {
+                if (points.length - i <= max) return max; //impossible to have higher number
+
                 HashMap<String, Integer> cache = new HashMap();
                 int sameCount = 0;
                 int localMax = 1;
