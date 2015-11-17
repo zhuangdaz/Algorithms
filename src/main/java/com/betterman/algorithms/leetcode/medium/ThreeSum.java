@@ -8,6 +8,7 @@ import java.util.List;
  * Created by zhuangda on 11/16/15.
  */
 public class ThreeSum {
+
     public class Solution {
         // sort array
         // one pointer to traverse the array
