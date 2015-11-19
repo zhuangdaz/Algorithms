@@ -6,11 +6,10 @@ package com.betterman.algorithms.interview.airbnb;
 public class CsvParser {
     /**
      * parse csv
-     1) don't treat, inside quote as a separator
-     2) Each field inside "xxx" may have escape
-     , where " acts as an escape. so "" will show as "
-
-
+     * 1) don't treat, inside quote as a separator
+     * 2) Each field inside "xxx" may have escape
+     * , where " acts as an escape. so "" will show as "
+     *
      * @param line
      * @return
      */
@@ -25,7 +24,6 @@ public class CsvParser {
         Alexandra "Alex"|Menendez|alex.menendez@gmail.com|Miami|1
         "Alexandra Alex"
     */
-
     private static String parseLine(String line) {
         // number of properties is fixed?
         // 1. use comma as delimiter, prob: if comma is also existed in the string
@@ -67,15 +65,50 @@ public class CsvParser {
     }
 
     public static void main(String[] args) {
-        String csv =
-//                "John,Smith,john.smith@gmail.com,Los Angeles,1"
-                "Jane,Roberts,janer@msn.com,\"San Francisco, CA\",0"
-//                "\"Alexandra \"\"Alex\"\"\",Menendez,alex.menendez@gmail.com,Miami,1"
-//                "\"\"\"Alexandra Alex\"\"\""
-//                "\"\"Alexandra Alex\"\""  //bad formatting
-                ;
+        String[] lines = new String[]{
+            "John,Smith,john.smith@gmail.com,Los Angeles,1",
+            "Jane,Roberts,janer@msn.com,\"San Francisco, CA\",0",
+            "\"Alexandra \"\"Alex\"\"\",Menendez,alex.menendez@gmail.com,Miami,1",
+            "\"\"\"Alexandra Alex\"\"\""
+        };
+//        String csv =
+////                "John,Smith,john.smith@gmail.com,Los Angeles,1"
+//                "Jane,Roberts,janer@msn.com,\"San Francisco, CA\",0"
+////                "\"Alexandra \"\"Alex\"\"\",Menendez,alex.menendez@gmail.com,Miami,1"
+////                "\"\"\"Alexandra Alex\"\"\""
+////                "\"\"Alexandra Alex\"\""  //bad formatting
+//                ;
+        for (String line : lines) {
+            System.out.println(parseLine(line));
+        }
 
-        System.out.println(parseLine(csv));
+    }
+
+    private static String parseLine2(String line) {
+        char[] arr = line.toCharArray();
+        StringBuffer sb = new StringBuffer();
+        boolean inQuote = false;
+        for (int i = 0; i < arr.length; i++) {
+            // special case: , & "
+            if (arr[i] == ',' && !inQuote) {
+                sb.append("|");
+            } else if (arr[i] == '"') {
+                if (!inQuote) {
+                    inQuote = true;
+                } else {
+                    if (i + 1 == arr.length || arr[i + 1] != '"') {
+                        inQuote = false;
+                    } else {
+                        sb.append("\"");
+                        i++;
+                    }
+                }
+            } else {
+                sb.append(arr[i]);
+            }
+        }
+
+        return sb.toString();
     }
 
 }

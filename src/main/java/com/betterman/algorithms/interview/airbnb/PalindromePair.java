@@ -83,4 +83,71 @@ public class PalindromePair {
 
         find(words);
     }
+
+    static void find2(List<String> words) {
+        HashMap<String, Set<String>> lookup = new HashMap();
+        Set<String> processed = new HashSet<String>();
+
+        for (int i = 0; i < words.size(); i++) {
+            Set<String> matches = new HashSet<String>();
+            if (lookup.containsKey(words.get(i))) {
+                for (String match : lookup.get(words.get(i))) {
+                    matches.add(match);
+                }
+            }
+
+            Set<String> candidates = calAllPalindrome(words.get(i));
+            for (String s : candidates) {
+                if (processed.contains(s)) {
+                    matches.add(s);
+                } else {
+                    if (!lookup.containsKey(s)) {
+                        lookup.put(s, new HashSet<String>());
+                    }
+                    lookup.get(s).add(words.get(i));
+                }
+            }
+
+            for (String match : matches) {
+                System.out.println(words.get(i) + "->" + match);
+            }
+            processed.add(words.get(i));
+        }
+    }
+
+
+    static Set<String> calAllPalindrome(String word) {
+        Set<String> ret = new HashSet();
+        String reversed = new StringBuffer(word).reverse().toString();
+        //prefix
+        for (int i = reversed.length() - 1; i >= 0; i--) {
+            if (isPalindrome(reversed.substring(0, i + 1) + word)) {
+                ret.add(reversed.substring(0, i + 1));
+            } else {
+                break;
+            }
+        }
+
+        //suffix
+        for (int i = 0; i < reversed.length(); i++) {
+            if (isPalindrome(word + reversed.substring(i, reversed.length()))) {
+                ret.add(reversed.substring(i, reversed.length()));
+            } else {
+                break;
+            }
+        }
+        return ret;
+    }
+
+    static boolean isPalindrome(String word) {
+        char[] arr = word.toCharArray();
+        int i = (arr.length - 1) / 2;
+        int j = arr.length / 2;
+        while (i >= 0) {
+            if (arr[i] != arr[j]) return false;
+            i--;
+            j++;
+        }
+        return true;
+    }
 }
