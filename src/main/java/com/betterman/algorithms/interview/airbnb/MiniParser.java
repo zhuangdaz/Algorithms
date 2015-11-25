@@ -46,15 +46,15 @@ public class MiniParser {
         }
 
         ret.mArray = new ArrayList<IntegerOrArray>();
-        int l = 1;
+        int startIndex = 1;
         for (int i = 1; i < line.length(); i++) {
             char c = line.charAt(i);
             if (c == ',') {
-                IntegerOrArray element = parse(line.substring(l, i));
+                IntegerOrArray element = parse(line.substring(startIndex, i));
                 if (element != null) {
                     ret.mArray.add(element);
                 }
-                l = i + 1;
+                startIndex = i + 1;
             } else if (c == '[') {
                 int leftBracket = 1;
                 for (int j = i + 1; j < line.length(); j++) {
@@ -67,22 +67,22 @@ public class MiniParser {
                         leftBracket--;
 
                         if (leftBracket == 0) {
-                            IntegerOrArray element = parse(line.substring(l, j + 1));
+                            IntegerOrArray element = parse(line.substring(startIndex, j + 1));
                             if (element != null) {
                                 ret.mArray.add(element);
                             }
-                            l = j + 1;
+                            startIndex = j + 1;
                             i = j;
                             break;
                         }
                     }
                 }
-            } else if (c == ']' && l < i) {
-                IntegerOrArray element = parse(line.substring(l, i));
+            } else if (c == ']' && startIndex < i) {
+                IntegerOrArray element = parse(line.substring(startIndex, i));
                 if (element != null) {
                     ret.mArray.add(element);
                 }
-                l = i + 1;
+                startIndex = i + 1;
             }
 
         }

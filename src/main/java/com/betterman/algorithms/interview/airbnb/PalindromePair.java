@@ -84,6 +84,8 @@ public class PalindromePair {
         find(words);
     }
 
+    //confirm: all words are unique
+    //O(nl^2)
     static void find2(List<String> words) {
         HashMap<String, Set<String>> lookup = new HashMap();
         Set<String> processed = new HashSet<String>();
