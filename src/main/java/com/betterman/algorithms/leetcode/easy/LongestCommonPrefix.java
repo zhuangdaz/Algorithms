@@ -4,6 +4,7 @@ package com.betterman.algorithms.leetcode.easy;
  * Created by zhuangda on 12/2/15.
  */
 public class LongestCommonPrefix {
+    // time: O(mn)
     public class Solution {
         public String longestCommonPrefix(String[] strs) {
             if (strs == null || strs.length == 0) return "";
