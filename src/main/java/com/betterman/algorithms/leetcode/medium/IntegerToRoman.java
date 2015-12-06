@@ -4,7 +4,7 @@ package com.betterman.algorithms.leetcode.medium;
  * Created by zhuangda on 12/6/15.
  */
 public class IntegerToRoman {
-    public class Solution {
+    public static class Solution {
         public String intToRoman(int num) {
             if (num > 3999 || num < 1) return null;
             char[][] table = new char[][]{
@@ -34,7 +34,7 @@ public class IntegerToRoman {
                             sec.append(table[i][0]);
                         }
                     }
-                    ret.insert(0, sec.toString());
+                    ret.insert(0, sec);
                 }
 
                 num /= 10;
@@ -42,6 +42,23 @@ public class IntegerToRoman {
             }
 
             return ret.toString();
+        }
+
+        public static final int[] intDict = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        public static final String[] romanDict = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        public String intToRoman2(int num) {
+            int i = 0;
+            StringBuffer sb = new StringBuffer();
+            while (num > 0) {
+                if (num >= intDict[i]) {
+                    sb.append(romanDict[i]);
+                    num -= intDict[i];
+                } else {
+                    i++;
+                }
+            }
+            return sb.toString();
         }
     }
 }
