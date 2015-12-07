@@ -3,6 +3,12 @@ package com.betterman.algorithms.leetcode.medium;
 /**
  * Created by zhuangda on 12/7/15.
  */
+
+/**
+ * Given two numbers represented as strings, return multiplication of the numbers as a string.
+ * <p>
+ * Note: The numbers can be arbitrarily large and are non-negative.
+ */
 public class MultiplyStrings {
     public static class Solution {
         public String multiply(String num1, String num2) {
