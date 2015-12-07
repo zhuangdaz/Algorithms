@@ -110,7 +110,5 @@ public class BasicCalII {
             )
         );
 
-        Stack<Integer> stack = new Stack<Integer>();
-        stack.p
     }
 }
