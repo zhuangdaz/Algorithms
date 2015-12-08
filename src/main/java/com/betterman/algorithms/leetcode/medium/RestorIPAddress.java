@@ -6,6 +6,17 @@ import java.util.List;
 /**
  * Created by zhuangda on 12/7/15.
  */
+
+/**
+ * Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+ * <p>
+ * For example:
+ * Given "25525511135",
+ * <p>
+ * return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
+ * <p>
+ * Hide Tags Backtracking String
+ */
 public class RestorIPAddress {
     public static class Solution {
         public List<String> restoreIpAddresses(String s) {
