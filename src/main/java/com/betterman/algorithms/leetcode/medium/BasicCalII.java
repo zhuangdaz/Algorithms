@@ -3,7 +3,6 @@ package com.betterman.algorithms.leetcode.medium;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * Created by zhuangda on 12/6/15.
@@ -80,13 +79,11 @@ public class BasicCalII {
                 } else if (c != ' ') {
                     if (opt == 0 || opt == '+' || opt == '-') {
                         res += preNum;
-                        num = opt == '-' ? - 1 * num : num;
+                        num = opt == '-' ? -1 * num : num;
                         preNum = num;
-                    }
-                    else if (opt == '*') {
+                    } else if (opt == '*') {
                         preNum *= num;
-                    }
-                    else {
+                    } else {
                         preNum /= num;
                     }
                     opt = c;
