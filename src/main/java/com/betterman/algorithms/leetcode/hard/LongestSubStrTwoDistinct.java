@@ -18,16 +18,9 @@ public class LongestSubStrTwoDistinct {
                     last = i - p1;
                     p1 = p2;
                     p2 = i;
-                } else if (p1 == p2) {
-                    if (chars[i] == chars[p1]) {
-                        p1 = i;
-                        p2 = i;
-                    }
-                    last++;
-                    p2 = i;
                 } else {
                     if (chars[i] == chars[p1]) {
-                        p1 = p2;
+                        p1 = p1 == p2 ? i : p2;
                     }
                     last++;
                     p2 = i;
