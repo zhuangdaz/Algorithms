@@ -7,6 +7,7 @@ import java.util.Stack;
  */
 public class LongestValidParentheses {
     public static class Solution {
+        //O(n)
         public int longestValidParentheses(String s) {
             int max = 0, start = 0;
             Stack<Integer> stack = new Stack();
@@ -14,9 +15,9 @@ public class LongestValidParentheses {
             for (int i = 0; i < sArr.length; i++) {
                 if (sArr[i] == '(') {
                     stack.push(i);
-                } else {
+                } else {  //sArr[i] == ')'
                     if (stack.isEmpty()) {
-                        start = i + 1;
+                        start = i + 1;  //restart counting
                     } else {
                         stack.pop();
                         if (stack.isEmpty()) {
@@ -29,13 +30,5 @@ public class LongestValidParentheses {
             }
             return max;
         }
-    }
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        String s =
-            ""
-            ;
-        solution.longestValidParentheses();
     }
 }
