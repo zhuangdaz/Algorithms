@@ -5,6 +5,9 @@ import java.util.*;
 /**
  * Created by zhuangda on 11/17/15.
  */
+
+//TODO: two end BFS solution:
+//https://leetcode.com/discuss/41689/88ms-accepted-solution-with-68ms-word-ladder-88ms-word-ladder
 public class WordLadderII {
     public static class Solution {
         public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
@@ -13,41 +16,33 @@ public class WordLadderII {
             List<String> initList = new ArrayList();
             initList.add(beginWord);
             tmp.add(initList);
-
-            HashSet<String> visited = new HashSet();
+            wordList.add(beginWord);
+            wordList.add(endWord);
+            Map<String, Set<String>> expandWords = new HashMap();
+            Set<String> globalUsedWords = new HashSet();
             while (true) {
                 List<List<String>> newBranches = new ArrayList();
                 Set<String> usedWords = new HashSet();
-                HashSet<String> visiting = new HashSet();
 
                 Iterator<List<String>> iter = tmp.iterator();
                 while (iter.hasNext()) {
                     List<String> branch = iter.next();
-                    boolean invalid = false;
-                    for (int i = 1; i < branch.size(); i++) {
-                        if (visited.contains(branch.get(i))) {
-                            //exist a shorter path
-                            invalid = true;
-                            break;
-                        }
-                    }
-
-                    if (invalid) {
-                        iter.remove();
-                        continue;
-                    }
 
                     String lastWord = branch.get(branch.size() - 1);
-                    if (transformable(lastWord, endWord)) {
-                        visiting.addAll(branch.subList(1, branch.size()));
+
+                    if (!expandWords.containsKey(lastWord)) {
+                        expandWords.put(lastWord, expand(lastWord, wordList));
+                    }
+
+                    if (expandWords.get(lastWord).contains(endWord)) {
                         branch.add(endWord);
                         ret.add(branch);
                         iter.remove();
                         continue;
                     }
 
-                    List<String> expandWords = expand(lastWord, wordList);
-                    for (String next : expandWords) {
+                    for (String next : expandWords.get(lastWord)) {
+                        if (globalUsedWords.contains(next)) continue;
                         List<String> newBranch = new ArrayList(branch);
                         newBranch.add(next);
                         newBranches.add(newBranch);
@@ -57,20 +52,20 @@ public class WordLadderII {
                 }
 
                 if (ret.size() > 0 || newBranches.size() == 0) return ret;
-                visited.addAll(visiting);
                 tmp = newBranches;
+                globalUsedWords.addAll(usedWords);
                 wordList.removeAll(usedWords);
             }
 
         }
 
         /**
-         * Generate a list of words the word
+         * Generate a list of words expanded from the word
          * Skip if it's the same character
          * If word is in dictionary, add to expansion list
          */
-        private List<String> expand(String word, Set<String> dict) {
-            List<String> res = new ArrayList<String>();
+        private Set<String> expand(String word, Set<String> dict) {
+            Set<String> res = new HashSet<String>();
             for (int i = 0; i < word.length(); i++) {
                 for (char ch = 'a'; ch <= 'z'; ch++) {
                     char[] chs = word.toCharArray();
@@ -82,16 +77,6 @@ public class WordLadderII {
                 }
             }
             return res;
-        }
-
-        private boolean transformable(String word1, String word2) {
-            int diff = 0;
-            for (int i = 0; i < word1.length(); i++) {
-                if (word1.charAt(i) == word2.charAt(i)) continue;
-                else if (diff == 1) return false;
-                else diff++;
-            }
-            return true;
         }
     }
 
