@@ -58,6 +58,35 @@ public class InterleavingStr {
             }
             return t[m][n];
         }
+
+
+        //space: O(n); time: O(mn)
+        public boolean isInterleaveSpaceOptimal(String s1, String s2, String s3) {
+            char[] chars1 = s1.toCharArray();
+            char[] chars2 = s2.toCharArray();
+            char[] chars3 = s3.toCharArray();
+
+            int m = chars1.length;
+            int n = chars2.length;
+
+            if (m + n != chars3.length) return false;
+
+            boolean[] opt = new boolean[n + 1];
+            opt[0] = true;
+
+            for (int i = 0; i < n; i++) {
+                opt[i + 1] = opt[i] && chars2[i] == chars3[i];
+            }
+
+            for (int i = 0; i < m; i++) {
+                opt[0] = opt[0] && chars1[i] == chars3[i];
+                for (int j = 0; j < n; j++) {
+                    opt[j + 1] = opt[j + 1] && chars1[i] == chars3[i + j + 1] ||
+                        opt[j] && chars2[j] == chars3[i + j + 1];
+                }
+            }
+            return opt[n];
+        }
     }
 
     public static void main(String[] args) {
