@@ -30,6 +30,8 @@ public class ScrambleStr {
             }
             return false;
         }
+
+        //3D DP solution, O(n^4)
     }
 
     public static void main(String[] args) {
