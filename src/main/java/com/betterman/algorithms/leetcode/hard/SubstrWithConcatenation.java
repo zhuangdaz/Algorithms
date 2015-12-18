@@ -7,6 +7,8 @@ import java.util.*;
  */
 public class SubstrWithConcatenation {
     public static class Solution {
+
+        //time:O(wl * 2 * n / wl) = O(2n)
         public List<Integer> findSubstring(String s, String[] words) {
             List<Integer> res = new ArrayList();
             int count = words.length;
