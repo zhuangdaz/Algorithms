@@ -55,5 +55,40 @@ public class MinWindowSubstr {
             }
             return minDist == Integer.MAX_VALUE ? "" : s.substring(minIdx, minIdx + minDist);
         }
+
+        //Use fixed size array instead of hash table, increase performance
+        public String minWindowFixedArray(String s, String t) {
+            char[] sArr = s.toCharArray();
+            char[] tArr = t.toCharArray();
+
+            if (sArr.length < tArr.length) return "";
+
+            int[] map = new int[128]; //ASCII table
+            for (char c : tArr) {
+                map[c]++;
+            }
+
+            int count = tArr.length;
+            int begin = 0, end = 0;
+            int minIdx = -1, minDist = Integer.MAX_VALUE;
+
+            while (end < sArr.length) {
+                if (map[sArr[end++]]-- > 0) count--;
+
+                //substring is valid
+                while(count == 0) {
+                    //[begin, end)
+                    if (end - begin < minDist) {
+                        minDist = end - begin;
+                        minIdx = begin;
+                    }
+
+                    //shrink the window and try to make the substring invalid
+                    if (map[sArr[begin++]]++ == 0) count++;
+                }
+            }
+
+            return minDist == Integer.MAX_VALUE ? "" : s.substring(minIdx, minIdx + minDist);
+        }
     }
 }
