@@ -92,8 +92,6 @@ public class MinWindowSubstr {
                 }
             }
 
-            Set<Integer> set = new HashSet();
-            set.add(1);
             return minDist == Integer.MAX_VALUE ? "" : s.substring(minIdx, minIdx + minDist);
         }
     }
