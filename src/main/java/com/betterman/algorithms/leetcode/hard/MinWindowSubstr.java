@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by zhuangda on 12/20/15.
  */
 public class MinWindowSubstr {
-    public static class Solution {
+    public class Solution {
         public String minWindow(String s, String t) {
             char[] sArr = s.toCharArray();
             char[] tArr = t.toCharArray();
@@ -29,18 +29,21 @@ public class MinWindowSubstr {
             while (end < sArr.length) {
                 char c = sArr[end++];
                 if (map.containsKey(c)) {
-                    map.put(c, map.get(c) - 1);
-                    if (map.get(c) >= 0) {
+                    if (map.get(c) > 0) {
                         count--;
                     }
+                    map.put(c, map.get(c) - 1);
                 }
 
+                //substring is valid
                 while (count == 0) {
+                    //[begin, end)
                     if (end - begin < minDist) {
                         minDist = end - begin;
                         minIdx = begin;
                     }
 
+                    //shrink the window and try to make the substring invalid
                     char beginChar = sArr[begin++];
                     if (map.containsKey(beginChar)) {
                         map.put(beginChar, map.get(beginChar) + 1);
@@ -50,7 +53,6 @@ public class MinWindowSubstr {
                     }
                 }
             }
-
             return minDist == Integer.MAX_VALUE ? "" : s.substring(minIdx, minIdx + minDist);
         }
     }
