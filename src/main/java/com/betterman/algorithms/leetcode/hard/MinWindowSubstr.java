@@ -1,7 +1,9 @@
 package com.betterman.algorithms.leetcode.hard;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by zhuangda on 12/20/15.
@@ -90,6 +92,8 @@ public class MinWindowSubstr {
                 }
             }
 
+            Set<Integer> set = new HashSet();
+            set.add(1);
             return minDist == Integer.MAX_VALUE ? "" : s.substring(minIdx, minIdx + minDist);
         }
     }
