@@ -8,6 +8,8 @@ import java.util.Map;
  */
 public class MinWindowSubstr {
     public class Solution {
+        // with amortized analysis, every character at most iterated twice,
+        // so that time complexity is O(2n)
         public String minWindow(String s, String t) {
             char[] sArr = s.toCharArray();
             char[] tArr = t.toCharArray();
