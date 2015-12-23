@@ -31,5 +31,23 @@ public class UniquePaths {
             }
             return lastRow[0];
         }
+
+        //time: O(n); space:O(1)
+        //total: m+n-2 movements
+        //left: n-1 movements
+        //down: m-1 movements
+        //unique paths: combinations Math.min(left, down) movements from total.
+        public int uniquePathsFormula(int m, int n) {
+            double res = 1;
+
+            int k = Math.min(m - 1, n - 1);
+            int N = m + n - 2;
+
+            for (int i = 1; i <= k; i++, N--) {
+                res = res * N / i;
+            }
+
+            return (int)res;
+        }
     }
 }
