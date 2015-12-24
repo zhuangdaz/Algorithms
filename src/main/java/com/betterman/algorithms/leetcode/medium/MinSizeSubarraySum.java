@@ -14,7 +14,8 @@ package com.betterman.algorithms.leetcode.medium;
  * If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log n).
  */
 public class MinSizeSubarraySum {
-    public class Solution {
+    public static class Solution {
+        //O(n)
         public int minSubArrayLen(int s, int[] nums) {
             int min = Integer.MAX_VALUE;
             for (int l = 0, r = 0, sum = 0; r < nums.length; r++) {
@@ -27,5 +28,43 @@ public class MinSizeSubarraySum {
             }
             return min == Integer.MAX_VALUE ? 0 : min;
         }
+
+
+        //O(nlgn)
+        public int minSubArrayLenBinarySearch(int s, int[] nums) {
+            int[] sums = new int[nums.length + 1];
+
+            for (int i = 0; i < nums.length; i++) {
+                sums[i + 1] = sums[i] + nums[i];
+            }
+
+            int min = Integer.MAX_VALUE;
+            for (int i = 0; i < sums.length; i++) {
+                int minIdx = binarySearch(sums, i + 1, sums.length - 1, sums[i] + s);
+                if (minIdx == sums.length) break; //can exit safely because the rest sub arrays have fewer positive numbers so that it is impossible to have a sum greater than s
+                min = Math.min(min, minIdx - i);
+            }
+            return min == Integer.MAX_VALUE ? 0 : min;
+        }
+
+
+        private int binarySearch(int[] sums, int lo, int hi, int key) {
+            while (lo <= hi) {
+                int mid = (lo + hi) / 2;
+                if (sums[mid] >= key) {
+                    hi = mid - 1;
+                } else {
+                    lo = mid + 1;
+                }
+            }
+            return lo;
+        }
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int s = 4;
+        int[] nums = new int[]{1, 4, 4};
+        System.out.println(solution.minSubArrayLenBinarySearch(s, nums));
     }
 }
