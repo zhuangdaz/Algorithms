@@ -59,19 +59,17 @@ public class ThreeSum {
                 if (i > 0 && nums[i] == nums[i - 1]) continue;
                 if (nums[i] > 0) break;
 
-                int target = nums[i] * -1;
+                int target = -nums[i];
                 int lo = i + 1;
                 int hi = nums.length - 1;
 
                 while (lo < hi) {
                     int sum = nums[lo] + nums[hi];
                     if (sum == target) {
-                        res.add(Arrays.asList(nums[i], nums[lo], nums[hi]));
-                        while (lo < hi && nums[lo] == nums[lo + 1]) lo++;
-                        while (lo < hi && nums[hi] == nums[hi - 1]) hi--;
-
-                        lo++;
-                        hi--;
+                        List<Integer> triplet = Arrays.asList(nums[i], nums[lo], nums[hi]);
+                        res.add(triplet);
+                        while (lo < hi && nums[lo] == triplet.get(1)) lo++;
+                        while (lo < hi && nums[hi] == triplet.get(2)) hi--;
                     }
                     else if (sum < target) lo++;
                     else hi--;
