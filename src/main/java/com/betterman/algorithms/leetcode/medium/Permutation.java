@@ -37,4 +37,6 @@ public class Permutation {
             return list;
         }
     }
+
+    //Iterative solution: use NextPermutation to keep calculate next permutation until loop back to origin array
 }
