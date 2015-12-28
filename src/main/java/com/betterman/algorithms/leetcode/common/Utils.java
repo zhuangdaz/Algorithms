@@ -3,7 +3,7 @@ package com.betterman.algorithms.leetcode.common;
 /**
  * Created by zhuangda on 12/27/15.
  */
-public class Util {
+public class Utils {
     public static void swap(int[] nums, int i, int j) {
         int tmp = nums[i];
         nums[i] = nums[j];

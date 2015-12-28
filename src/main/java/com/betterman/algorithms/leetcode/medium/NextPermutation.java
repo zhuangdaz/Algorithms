@@ -1,6 +1,6 @@
 package com.betterman.algorithms.leetcode.medium;
 
-import com.betterman.algorithms.leetcode.common.Util;
+import com.betterman.algorithms.leetcode.common.Utils;
 
 /**
  * Created by zhuangda on 12/27/15.
@@ -16,10 +16,10 @@ public class NextPermutation {
             if (i > -1) {
                 int j = nums.length - 1;
                 for (; nums[j] <= nums[i]; j--);
-                Util.swap(nums, i, j);
-                Util.reverse(nums, i + 1, nums.length - 1);
+                Utils.swap(nums, i, j);
+                Utils.reverse(nums, i + 1, nums.length - 1);
             } else {
-                Util.reverse(nums, 0, nums.length - 1);
+                Utils.reverse(nums, 0, nums.length - 1);
             }
         }
     }
