@@ -4,6 +4,7 @@ import com.betterman.algorithms.leetcode.common.TreeNode;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 /**
  * Created by zhuangda on 12/30/15.
@@ -39,6 +40,32 @@ public class ConstructBinaryTreePreorderInorder {
             root.left = left;
             root.right = right;
             return root;
+        }
+
+        public TreeNode buildTreeIterative(int[] preorder, int[] inorder) {
+            if (inorder.length==0) return null;
+            TreeNode dummyRoot = new TreeNode(Integer.MIN_VALUE);
+            Stack<TreeNode> s = new Stack();
+            s.push(dummyRoot);
+
+            TreeNode lastNode = null, newNode;
+            int i = 0, j = 0;
+            while (j < inorder.length) {
+                if (s.peek().val == inorder[j]) {
+                    lastNode = s.pop();
+                    j++;
+                } else if (lastNode != null) {
+                    newNode = new TreeNode(preorder[i++]);
+                    lastNode.right = newNode;
+                    lastNode = null;
+                    s.push(newNode);
+                } else {
+                    newNode = new TreeNode(preorder[i++]);
+                    s.peek().left = newNode;
+                    s.push(newNode);
+                }
+            }
+            return dummyRoot.left;
         }
     }
 }
