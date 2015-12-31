@@ -11,6 +11,7 @@ public class ThreeSumSmaller {
             Arrays.sort(nums);
             int count = 0;
             for (int i = 0; i < nums.length - 2; i++) {
+                int prevCount = count;
                 int lo = i + 1, hi = nums.length - 1;
                 while (lo < hi) {
                     int sum = nums[lo] + nums[hi] + nums[i];
@@ -21,6 +22,8 @@ public class ThreeSumSmaller {
                         hi--;
                     }
                 }
+
+                if (prevCount == count) break; //if current nums[i] doesn't increase the count, then larger nums[i] won't neither.
             }
             return count;
         }
