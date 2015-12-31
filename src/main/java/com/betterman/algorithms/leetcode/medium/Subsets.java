@@ -34,20 +34,15 @@ public class Subsets {
             Arrays.sort(nums);
             List<List<Integer>> res = new ArrayList();
             res.add(new ArrayList());
-            helper(res, nums, 0);
-            return res;
-        }
-
-        private void helper(List<List<Integer>> res, int[] nums, int i) {
-            if (i == nums.length) return;
-            List<List<Integer>> newLists = new ArrayList();
-            for (List<Integer> list : res) {
-                List<Integer> newList = new ArrayList(list);
-                newList.add(nums[i]);
-                newLists.add(newList);
+            for (int i = 0; i < nums.length; i++) {
+                int n = res.size(); //avoid concurrent modification
+                for (int j = 0; j < n; j++) {
+                    List<Integer> newList = new ArrayList(res.get(j));
+                    newList.add(nums[i]);
+                    res.add(newList);
+                }
             }
-            res.addAll(newLists);
-            helper(res, nums, i + 1);
+            return res;
         }
 
         public List<List<Integer>> subsetsBitManipulation(int[] nums) {
