@@ -21,6 +21,7 @@ public class SearchInRotatedSortedArrayII {
         // c9: 1 1 1 4 1 t: 4
         //c10: 1 4 1 1 1 t: 4
 
+        //worst case: O(n), average: O(lgn)
         private boolean helper(int[] nums, int lo, int hi, int target) {
             if (lo > hi) return false;
 
