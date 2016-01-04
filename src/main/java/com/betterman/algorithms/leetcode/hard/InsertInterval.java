@@ -19,10 +19,8 @@ public class InsertInterval {
             }
 
             while (i < intervals.size() && intervals.get(i).start <= newInterval.end) {
-                newInterval = new Interval(
-                    Math.min(intervals.get(i).start, newInterval.start),
-                    Math.max(intervals.get(i).end, newInterval.end)
-                );
+                newInterval.start = Math.min(intervals.get(i).start, newInterval.start);
+                newInterval.end = Math.max(intervals.get(i).end, newInterval.end);
                 i++;
             }
 
