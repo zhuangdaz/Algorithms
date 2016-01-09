@@ -29,6 +29,10 @@ public class ContainsDuplicateII {
                 if (i > k) {
                     set.remove(nums[i - k - 1]);
                 }
+                /**
+                 *  @return <tt>true</tt> if this set did not already contain the specified
+                 *         element
+                 */
                 if (!set.add(nums[i])) return true;
             }
             return false;
