@@ -1,8 +1,5 @@
 package com.betterman.algorithms.leetcode.easy;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by zhuangda on 1/8/16.
  */
@@ -26,28 +23,25 @@ import java.util.List;
  */
 public class BullsCows {
     public class Solution {
-        //"1122 1222"
+        //"1122 1222" => 3A0B
+        // "23 32" => 0A2B
         public String getHint(String secret, String guess) {
             int bulls = 0, cows = 0;
             int[] counts = new int[10];
-            List<Character> list = new ArrayList();
             char[] s = secret.toCharArray();
             char[] g = guess.toCharArray();
 
             for (int i = 0; i < s.length; i++) {
                 if (s[i] != g[i]) {
-                    list.add(g[i]);
-                    counts[s[i] - '0']++;
+                    int si = s[i] - '0';
+                    int gi = g[i] - '0';
+
+                    if (counts[si] < 0) cows++;
+                    if (counts[gi] > 0) cows++;
+                    counts[si]++;
+                    counts[gi]--;
                 } else {
                     bulls++;
-                }
-            }
-
-            for (int i = 0; i < list.size(); i++) {
-                char c = list.get(i);
-                if (counts[c - '0'] != 0) {
-                    cows++;
-                    counts[c - '0']--;
                 }
             }
 
