@@ -39,4 +39,8 @@ public class ValidSudoku {
             return true;
         }
     }
+
+    public static void main(String[] args) {
+        System.out.print(Math.sqrt(4));
+    }
 }
