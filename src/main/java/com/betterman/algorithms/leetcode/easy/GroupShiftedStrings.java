@@ -8,27 +8,28 @@ import java.util.*;
 public class GroupShiftedStrings {
     public class Solution {
         public List<List<String>> groupStrings(String[] strings) {
-            Map<String, List<String>> map = new HashMap();
             Arrays.sort(strings);
-            for (String str : strings) {
-                StringBuffer sb = new StringBuffer();
-                char[] chars = str.toCharArray();
-                for (int i = 0; i < chars.length - 1; i++) {
-                    if (chars[i] - chars[i + 1] < 0) {
-                        sb.append(chars[i] - chars[i + 1] + 26);
-                    } else {
-                        sb.append(chars[i] - chars[i + 1]);
-                    }
-                    sb.append(",");
-                }
-                String key = sb.toString();
-                if (!map.containsKey(key)) {
-                    map.put(key, new ArrayList());
-                }
+            Map<String, List<String>> map = new HashMap();
 
-                map.get(key).add(str);
+            for (String word : strings) {
+                String key = getKey(word);
+                map.putIfAbsent(key, new ArrayList());
+                map.get(key).add(word);
             }
+
+            List<List<String>> res = new ArrayList();
             return new ArrayList(map.values());
+        }
+
+        private String getKey(String word) {
+            char[] chs = word.toCharArray();
+            int offset = chs[0] - 'a';
+            for (int i = 0; i < chs.length; i++) {
+                chs[i] -= offset;
+                if (chs[i] < 'a') chs[i] += 26;
+            }
+            BitSet bitSet = new BitSet();
+            return new String(chs);
         }
     }
 
