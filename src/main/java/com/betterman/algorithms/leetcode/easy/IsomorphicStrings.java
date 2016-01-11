@@ -10,6 +10,7 @@ import java.util.Set;
  */
 public class IsomorphicStrings {
     public class Solution {
+        //if string is using ASCII, we can use array instead of map.
         public boolean isIsomorphic(String s, String t) {
             Map<Character, Character> map = new HashMap();
             Set<Character> set = new HashSet();
@@ -24,12 +25,24 @@ public class IsomorphicStrings {
                     else {
                         set.add(schs[i]);
                         map.put(tchs[i], schs[i]);
-                        tchs[i] = schs[i];
                     }
                 }
             }
             return true;
+        }
 
+        public boolean isIsomorphicArray(String s, String t) {
+            int[] m = new int[256 * 2];
+            char[] schs = s.toCharArray();
+            char[] tchs = t.toCharArray();
+
+            for (int i = 0; i < schs.length; i++) {
+                if (m[schs[i]] != m[tchs[i] + 256]) return false;
+
+                m[schs[i]] = i + 1;
+                m[tchs[i] + 256] = i + 1;
+            }
+            return true;
         }
     }
 }
