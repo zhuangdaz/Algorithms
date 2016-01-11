@@ -16,8 +16,6 @@ public class GroupShiftedStrings {
                 map.putIfAbsent(key, new ArrayList());
                 map.get(key).add(word);
             }
-
-            List<List<String>> res = new ArrayList();
             return new ArrayList(map.values());
         }
 
@@ -28,7 +26,6 @@ public class GroupShiftedStrings {
                 chs[i] -= offset;
                 if (chs[i] < 'a') chs[i] += 26;
             }
-            BitSet bitSet = new BitSet();
             return new String(chs);
         }
     }
