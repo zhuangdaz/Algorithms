@@ -1,61 +1,33 @@
 package com.betterman.algorithms.leetcode.medium;
 
-import java.util.HashMap;
-
 /**
  * Created by zhuangda on 10/11/15.
  */
+
+/**
+ * Given a string, find the length of the longest substring without repeating characters.
+ * For example, the longest substring without repeating letters for "abcabcbb" is "abc", which the length is 3.
+ * For "bbbbb" the longest substring is "b", with the length of 1.
+ */
 public class LongestSubstring {
-    public static class Solution {
+    public class Solution {
         public int lengthOfLongestSubstring(String s) {
-            HashMap<Character, Integer> map = new HashMap();
-            int lastCharLength = 0;
             int max = 0;
+            int lastMax = 0;
+            int[] m = new int[256];
+            for (int i = 0; i < m.length; i++) m[i] = -1;
             for (int i = 0; i < s.length(); i++) {
                 char c = s.charAt(i);
-                if (!map.containsKey(c) || map.get(c) <= i - 1 - lastCharLength) {
-                    lastCharLength++;
+                if (m[c] < i - lastMax) {
+                    lastMax++;
+                    if (lastMax > max) max = lastMax;
                 } else {
-                    int lastPresent = map.get(c);
-                    lastCharLength = i - lastPresent;
+                    lastMax = i - m[c];
                 }
-
-                map.put(c, i);
-
-                if (lastCharLength > max) {
-                    max = lastCharLength;
-                }
-            }
-            return max;
-        }
-
-        // Essence(two pointers, hashMap):
-        // 1. find every character's start point(inclusive),
-        // 2. each character's start point at least starts from last character's start point
-        public int lengthOfLongestSubstringSimpler(String s) {
-            if (s == null) {
-                return 0;
+                m[c] = i;
             }
 
-            HashMap<Character, Integer> map = new HashMap();
-            int start = 0;
-            int max = 0;
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-
-                start = Math.max(start, map.containsKey(c) ? map.get(c) + 1 : 0);
-
-                max = Math.max(max, i - start + 1);
-
-                map.put(c, i);
-            }
             return max;
         }
     }
-
-//    public static void main(String[] args) {
-//        Solution solution = new Solution();
-//        List<Pair<String, Integer>> pairs =
-//        Pair<String, Integer> pair;
-//    }
 }
