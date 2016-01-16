@@ -20,9 +20,7 @@ public class MinWindowSubstr {
 
             Map<Character, Integer> map = new HashMap();
             for (char c : tArr) {
-                if (!map.containsKey(c)) {
-                    map.put(c, 0);
-                }
+                map.putIfAbsent(c, 0);
                 map.put(c, map.get(c) + 1);
             }
 
@@ -74,7 +72,7 @@ public class MinWindowSubstr {
 
             int count = tArr.length;
             int begin = 0, end = 0;
-            int minIdx = -1, minDist = Integer.MAX_VALUE;
+            int head = 0, min = Integer.MAX_VALUE;
 
             while (end < sArr.length) {
                 if (map[sArr[end++]]-- > 0) count--;
@@ -82,9 +80,9 @@ public class MinWindowSubstr {
                 //substring is valid
                 while(count == 0) {
                     //[begin, end)
-                    if (end - begin < minDist) {
-                        minDist = end - begin;
-                        minIdx = begin;
+                    if (end - begin < min) {
+                        min = end - begin;
+                        head = begin;
                     }
 
                     //shrink the window and try to make the substring invalid
@@ -92,7 +90,7 @@ public class MinWindowSubstr {
                 }
             }
 
-            return minDist == Integer.MAX_VALUE ? "" : s.substring(minIdx, minIdx + minDist);
+            return min == Integer.MAX_VALUE ? "" : s.substring(head, head + min);
         }
     }
 }
