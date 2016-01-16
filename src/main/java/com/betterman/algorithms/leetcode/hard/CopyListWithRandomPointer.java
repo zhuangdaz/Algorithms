@@ -13,14 +13,6 @@ import java.util.Map;
  * Return a deep copy of the list.
  */
 public class CopyListWithRandomPointer {
-    /**
-     * Definition for singly-linked list with a random pointer.
-     * class RandomListNode {
-     * int label;
-     * RandomListNode next, random;
-     * RandomListNode(int x) { this.label = x; }
-     * };
-     */
     public class Solution {
         public RandomListNode copyRandomList(RandomListNode head) {
             if (head == null) return null;
@@ -56,7 +48,37 @@ public class CopyListWithRandomPointer {
             }
 
             return dummy.next;
+        }
 
+        public RandomListNode copyRandomListConstantSpace(RandomListNode head) {
+            if (head == null) return null;
+
+            RandomListNode n = head;
+
+            while (n != null) {
+                RandomListNode tmp = n.next;
+                n.next = new RandomListNode(n.label);
+                n.next.next = tmp;
+                n = tmp;
+            }
+
+            n = head;
+            while (n != null) {
+                if (n.random != null) n.next.random = n.random.next;
+                n = n.next.next;
+            }
+
+            n = head;
+            RandomListNode copyHead = head.next;
+            while (n != null) {
+                RandomListNode copyNext = n.next;
+                n.next = copyNext.next;
+                if (n.next != null) {
+                    copyNext.next = n.next.next;
+                }
+                n = n.next;
+            }
+            return copyHead;
         }
     }
 
