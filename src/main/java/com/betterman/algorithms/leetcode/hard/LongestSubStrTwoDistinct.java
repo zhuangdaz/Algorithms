@@ -13,8 +13,6 @@ public class LongestSubStrTwoDistinct {
             char[] chars = s.toCharArray();
             for (int i = 1; i < chars.length; i++) {
                 if (p1 != p2 && chars[i] != chars[p1] && chars[i] != chars[p2]) {
-                    if (last > max) max = last;
-
                     last = i - p1;
                     p1 = p2;
                     p2 = i;
@@ -24,10 +22,9 @@ public class LongestSubStrTwoDistinct {
                     }
                     last++;
                     p2 = i;
+                    if (last > max) max = last;
                 }
             }
-
-            if (last > max) max = last;
             return max;
         }
     }
