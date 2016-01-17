@@ -18,5 +18,20 @@ public class ReverseLinkedList {
             }
             return prev;
         }
+
+
+        public ListNode reverseListRecursive(ListNode head) {
+            return helper(head, null);
+        }
+
+        private ListNode helper(ListNode n, ListNode prev) {
+            if (n == null) {
+                return prev;
+            }
+
+            ListNode next = n.next;
+            n.next = prev;
+            return helper(next, n);
+        }
     }
 }
