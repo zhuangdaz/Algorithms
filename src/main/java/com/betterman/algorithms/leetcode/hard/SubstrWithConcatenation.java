@@ -1,6 +1,9 @@
 package com.betterman.algorithms.leetcode.hard;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zhuangda on 12/17/15.
@@ -15,13 +18,9 @@ public class SubstrWithConcatenation {
             int wl = words[0].length();
 
             if (s.length() < count * wl) return res;
-
             Map<String, Integer> wordCount = new HashMap();
             for (String word : words) {
-                if (!wordCount.containsKey(word)) {
-                    wordCount.put(word, 0);
-                }
-
+                wordCount.putIfAbsent(word, 0);
                 wordCount.put(word, wordCount.get(word) + 1);
             }
 
@@ -33,9 +32,15 @@ public class SubstrWithConcatenation {
                 for (int j = i; j <= s.length() - wl; j += wl) {
                     String word = s.substring(j, j + wl);
                     if (wordCount.containsKey(word)) {
-                        curCount.put(word, curCount.containsKey(word) ? curCount.get(word) + 1 : 1);
+                        curCount.putIfAbsent(word, 0);
+                        curCount.put(word, curCount.get(word) + 1);
                         cnt++;
-
+                        while (curCount.get(word) > wordCount.get(word)) {
+                            String w = s.substring(left, left + wl);
+                            curCount.put(w, curCount.get(w) - 1);
+                            left += wl;
+                            cnt--;
+                        }
                         if (cnt == count) {
                             res.add(left);
                             String w = s.substring(left, left + wl);
@@ -43,15 +48,6 @@ public class SubstrWithConcatenation {
                             left += wl;
                             cnt--;
                         }
-
-                        while (curCount.get(word) > wordCount.get(word)) {
-                            String w = s.substring(left, left + wl);
-                            curCount.put(w, curCount.get(w) - 1);
-                            left += wl;
-                            cnt--;
-                        }
-
-
                     } else {
                         curCount.clear();
                         left = j + wl;
