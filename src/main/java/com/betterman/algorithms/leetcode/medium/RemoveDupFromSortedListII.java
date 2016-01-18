@@ -10,21 +10,21 @@ public class RemoveDupFromSortedListII {
         public ListNode deleteDuplicates(ListNode head) {
             ListNode start = new ListNode(0);
             start.next = head;
-            ListNode prev = start, curr = head;
+            ListNode prev = start;
 
-            while (curr != null) {
+            while (head != null) {
                 //dup
-                if (curr.next != null && curr.val == curr.next.val) {
-                    int dup = curr.val;
-                    while (curr != null && curr.val == dup) {
-                        curr = curr.next;
+                if (head.next != null && head.val == head.next.val) {
+                    while (head.next != null && head.val == head.next.val) {
+                        head = head.next;
                     }
-                    prev.next = curr;
                 } else {
-                    prev = curr;
-                    curr = curr.next;
+                    prev.next = head;
+                    prev = head;
                 }
+                head = head.next;
             }
+            prev.next = null;
             return start.next;
         }
 
