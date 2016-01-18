@@ -25,7 +25,6 @@ public class MergeTwoSortedLists {
                     l2 = l2.next;
                 }
                 n = n.next;
-                n.next = null;
             }
 
             if (l1 != null) n.next = l1;
