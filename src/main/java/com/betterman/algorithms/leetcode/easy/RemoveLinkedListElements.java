@@ -29,5 +29,11 @@ public class RemoveLinkedListElements {
             }
             return start.next;
         }
+
+        public ListNode removeElementsRec(ListNode head, int val) {
+            if (head == null) return null;
+            head.next = removeElementsRec(head.next, val);
+            return head.val == val ? head.next : head;
+        }
     }
 }
