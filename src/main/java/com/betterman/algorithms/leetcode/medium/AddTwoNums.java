@@ -1,18 +1,11 @@
 package com.betterman.algorithms.leetcode.medium;
 
+import com.betterman.algorithms.leetcode.common.ListNode;
+
 /**
  * Created by zhuangda on 10/9/15.
  */
 public class AddTwoNums {
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        public ListNode(int val) {
-            this.val = val;
-        }
-    }
-
     public class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
             //move forward one digit a time with carry until both of two lists end and carry is 0
