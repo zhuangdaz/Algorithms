@@ -10,7 +10,7 @@ public class ReverseLinkedList {
         public ListNode reverseList(ListNode head) {
             ListNode n = head;
             ListNode prev = null;
-            while(n != null) {
+            while (n != null) {
                 ListNode next = n.next;
                 n.next = prev;
                 prev = n;
@@ -32,6 +32,17 @@ public class ReverseLinkedList {
             ListNode next = n.next;
             n.next = prev;
             return helper(next, n);
+        }
+
+        public ListNode reverseListConcise(ListNode head) {
+            ListNode newHead = null;
+            while (head != null) {
+                ListNode next = head.next;
+                head.next = newHead;
+                newHead = head;
+                head = next;
+            }
+            return newHead;
         }
     }
 }
