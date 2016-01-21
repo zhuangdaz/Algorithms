@@ -48,5 +48,29 @@ public class ReverseNodesInKGroup {
             }
             return newHead;
         }
+
+        public ListNode reverseKGroupRecursive(ListNode head, int k) {
+            ListNode curr = head;
+            int count = 0;
+
+            //find k+1 node
+            while (curr != null && count < k) {
+                curr = curr.next;
+                count++;
+            }
+
+            if (count == k) {
+                curr = reverseKGroupRecursive(curr, k);
+
+                while (count-- > 0) {
+                    ListNode next = head.next;
+                    head.next = curr;
+                    curr = head;
+                    head = next;
+                }
+                head = curr;
+            }
+            return head;
+        }
     }
 }
