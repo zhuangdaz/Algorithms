@@ -5,6 +5,7 @@ package com.betterman.algorithms.leetcode.medium;
  */
 public class NumberOfDigitOne {
     public static class Solution {
+        //O(logn) log10
         public int countDigitOne(int n) {
             int cnt = 0;
 
@@ -20,7 +21,7 @@ public class NumberOfDigitOne {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-
+        
 //        System.out.println(1000000000 * 10);  // ==1410065408 !?
         System.out.println(solution.countDigitOne(1410065408));
     }
