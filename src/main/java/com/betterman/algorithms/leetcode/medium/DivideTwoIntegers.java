@@ -62,7 +62,9 @@ public class DivideTwoIntegers {
     }
 
     public static void main(String[] args) {
+        System.out.println(Double.MAX_VALUE);
+
         Solution solution = new Solution();
-        System.out.println(solution.divideBinarySearch(1, 1));
+        System.out.println(solution.divideBinarySearch(Integer.MAX_VALUE, Integer.MAX_VALUE));
     }
 }
