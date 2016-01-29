@@ -5,6 +5,8 @@ package com.betterman.algorithms.leetcode.hard;
  */
 public class BestMeetingPoint {
     public class Solution {
+        //Runtime: O(mn)
+        //Space: O(m+n)
         public int minTotalDistance(int[][] grid) {
             int[] I = new int[grid.length];
             int[] J = new int[grid[0].length];
