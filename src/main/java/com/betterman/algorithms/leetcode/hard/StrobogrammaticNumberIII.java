@@ -34,4 +34,12 @@ public class StrobogrammaticNumberIII {
             }
         }
     }
+
+    public static void main(String[] args) {
+        int[] I = new int[1];
+        int[] J = new int[4];
+        int[][] K = new int[][] {I, J};
+        System.out.println(I[0] -= 2);
+//        if ((I[0] -= 1) == 0) ++i;
+    }
 }
