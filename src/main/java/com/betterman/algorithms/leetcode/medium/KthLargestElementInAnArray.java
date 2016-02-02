@@ -24,7 +24,7 @@ public class KthLargestElementInAnArray {
         //quick sort based selection
         //O(N) best case / O(N^2) worst case running time + O(1) memory
         //note: randomizing the array can get O(N) in probabilistic guarantee.
-        private static final Random random = new Random();
+        private final Random random = new Random();
         public int findKthLargestQuickSelect(int[] nums, int k) {
             k = nums.length - k;
             int lo = 0, hi = nums.length - 1;
