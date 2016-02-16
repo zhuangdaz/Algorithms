@@ -26,7 +26,7 @@ public class MaximalSquare {
 
         }
 
-        //O(mn0 O(n)
+        //O(mn) O(n)
         public int maximalSquareOpt(char[][] matrix) {
             if (matrix == null || matrix.length == 0 || matrix[0].length == 0) return 0;
             int max = 0;
