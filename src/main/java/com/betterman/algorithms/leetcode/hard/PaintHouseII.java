@@ -1,11 +1,11 @@
-package com.betterman.algorithms.leetcode.medium;
+package com.betterman.algorithms.leetcode.hard;
 
 /**
- * Created by zhuangda on 2/10/16.
+ * Created by zhuangda on 2/18/16.
  */
-public class PaintHouse {
+public class PaintHouseII {
     public class Solution {
-        public int minCost(int[][] costs) {
+        public int minCostII(int[][] costs) {
             if (costs == null || costs.length == 0) return 0;
             int k = costs[0].length;
             int[] dp = new int[k];
