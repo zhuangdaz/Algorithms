@@ -33,5 +33,31 @@ public class BurstBallons {
             mem[left][right] = ans;
             return ans;
         }
+
+        //O(n^3)
+        public int maxCoinsDP(int[] iNums) {
+            int[] nums = new int[iNums.length + 2];
+            int n = 1;
+            for (int num : iNums) {
+                if (num > 0) {
+                    nums[n++] = num;
+                }
+            }
+            nums[0] = 1;
+            nums[n++] = 1;
+
+            int[][] dp = new int[n][n];
+
+            for (int k = 2; k < n; k++) {
+                for (int left = 0; left + k < n; left++) {
+                    int right = left + k;
+                    for (int i = left + 1; i < right; i++) {
+                        dp[left][right] = Math.max(dp[left][right],
+                                nums[left] * nums[i] * nums[right] + dp[left][i] + dp[i][right]);
+                    }
+                }
+            }
+            return dp[0][n - 1];
+        }
     }
 }
