@@ -17,7 +17,7 @@ public class BestTimeBuySellStockIII {
                 int tmpMax = dp[k - 1][0] - prices[0];
                 for (int i = 1; i < prices.length; i++) {
                     dp[k][i] = Math.max(dp[k][i - 1], tmpMax + prices[i]);
-                    if (dp[k - 1][i] - prices[i] > tmpMax) tmpMax = dp[k - 1][i] - prices[i];
+                    tmpMax = Math.max(tmpMax, dp[k - 1][i] - prices[i]);
                 }
             }
             return dp[K][prices.length - 1];
@@ -29,7 +29,7 @@ public class BestTimeBuySellStockIII {
             int[] dp = new int[prices.length];
 
             for (int k = 1; k <= K; k++) {
-                int tmpMax = dp[0] - prices[0];
+                int tmpMax = - prices[0];
                 for (int i = 1; i < prices.length; i++) {
                     int tmp = dp[i];
                     dp[i] = Math.max(dp[i - 1], tmpMax + prices[i]);
