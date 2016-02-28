@@ -12,10 +12,8 @@ package com.betterman.algorithms.leetcode.medium;
  *
  * For example:
  *
- * addWord("bad") addWord("dad") addWord("mad") search("pad") -> false
- * search("bad") -> true
- * search(".ad") -> true
- * search("b..") -> true
+ * addWord("bad") addWord("dad") addWord("mad") search("pad") -> false search("bad") -> true
+ * search(".ad") -> true search("b..") -> true
  *
  * Note: You may assume that all words are consist of lowercase letters a-z.
  */
