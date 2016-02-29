@@ -31,22 +31,24 @@ public class PalindromePermutationII {
                 map[i] /= 2;
             }
 
-            helper(map, new StringBuffer(), s.length() / 2, mid, ans);
+            dfs(map, new StringBuffer(), s.length() / 2, mid, ans);
             return ans;
         }
 
-        private void helper(int[] map, StringBuffer path, int len, String mid, List<String> ans) {
+        private void dfs(int[] map, StringBuffer path, int len, String mid, List<String> ans) {
             if (path.length() == len) {
                 StringBuilder reverse = new StringBuilder(path).reverse();
                 ans.add(path + mid + reverse);
                 return;
             }
 
+            //add one character into next position in the path
+            //remember to reset the path after one iteration
             for (int i = 0; i < map.length; i++) {
                 if (map[i] > 0) {
                     map[i]--;
                     path.append((char) i);
-                    helper(map, path, len, mid, ans);
+                    dfs(map, path, len, mid, ans);
                     path.deleteCharAt(path.length() - 1);
                     map[i]++;
                 }
