@@ -10,7 +10,6 @@ import java.util.Set;
 public class PalindromePermutation {
     public class Solution {
         public boolean canPermutePalindrome(String s) {
-            s.getBytes();
             char[] chs = s.toCharArray();
             Set<Character> set = new HashSet();
             for (char c : chs) if (!set.add(c)) set.remove(c);
