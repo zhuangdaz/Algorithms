@@ -1,6 +1,7 @@
 package com.betterman.algorithms.leetcode.medium;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,11 +21,9 @@ public class PalindromePartitioning {
                 return;
             }
 
-            String part = "";
             for (int i = start; i < chs.length; i++) {
-                part += chs[i];
                 if (isPalindrome(chs, start, i)) {
-                    path.add(part);
+                    path.add(new String(Arrays.copyOfRange(chs, start, i + 1)));
                     dfs(chs, i + 1, path, ans);
                     path.remove(path.size() - 1);
                 }
