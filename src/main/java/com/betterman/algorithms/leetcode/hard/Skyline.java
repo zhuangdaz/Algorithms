@@ -1,8 +1,11 @@
 package com.betterman.algorithms.leetcode.hard;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * Created by zhuangda on 3/6/16.
@@ -113,6 +116,44 @@ public class Skyline {
                 lastHeight = p[1];
             }
             return sl;
+        }
+
+
+        public List<int[]> getSkylineHeap(int[][] buildings) {
+            int[][] heights = new int[buildings.length * 2][];
+
+            for (int i = 0; i < buildings.length; i++) {
+                heights[2 * i] = new int[]{buildings[i][0], -buildings[i][2]};
+                heights[2 * i + 1] = new int[]{buildings[i][1], buildings[i][2]};
+            }
+
+            Arrays.sort(heights, (a, b) -> {
+                if (a[0] != b[0]) {
+                    return a[0] - b[0];
+                }
+                return a[1] - b[1];
+            });
+
+            List<int[]> ans = new LinkedList();
+            int prev = 0;
+            PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a)); //max heap
+            pq.add(0);
+
+            for (int[] h : heights) {
+                if (h[1] < 0) {
+                    pq.add(-h[1]);
+                } else {
+                    pq.remove(h[1]);
+                }
+
+                int curr = pq.peek();
+                if (curr != prev) {
+                    ans.add(new int[]{h[0], curr});
+                    prev = curr;
+                }
+            }
+            return ans;
+
         }
     }
 }
