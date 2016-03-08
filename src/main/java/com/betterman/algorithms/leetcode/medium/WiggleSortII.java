@@ -1,10 +1,15 @@
 package com.betterman.algorithms.leetcode.medium;
 
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  * Created by zhuangda on 3/7/16.
  */
 public class WiggleSortII {
     public static class Solution {
+        private final Random random = new Random();
+        //O(n) O(1)
         public void wiggleSort(int[] nums) {
             int mid = findKth(nums, (nums.length - 1) / 2, 0, nums.length - 1);
             int len = nums.length;
@@ -28,12 +33,13 @@ public class WiggleSortII {
         }
 
         private int convert(int i, int n) {
-//            return (i * 2) % ((n > 1) ? (n - 1) : 1);
             return (1+2*(i)) % (n|1);
         }
 
         private int findKth(int[] nums, int k, int lo, int hi) {
             if (lo >= hi) return nums[lo];
+            int p = lo + random.nextInt(hi - lo);
+            swap(nums, lo, p);
             int v = nums[lo];
             int i = lo, j = hi + 1;
 
@@ -56,6 +62,22 @@ public class WiggleSortII {
             int tmp = nums[i];
             nums[i] = nums[j];
             nums[j] = tmp;
+        }
+
+
+        //O(nlogn) O(n)
+        public void wiggleSortNaive(int[] nums) {
+            Arrays.sort(nums);
+            int[] tmp = new int[nums.length];
+            int s = (nums.length - 1) >> 1, t = nums.length - 1;
+            //KEY: rearrange nums from backward in order to separate mid elements as far as possible
+            for (int i = 0; i < nums.length; i++) {
+                tmp[i] = (i & 1) == 0 ? nums[s--] : nums[t--];
+            }
+
+            for (int i = 0; i < nums.length; i++) {
+                nums[i] = tmp[i];
+            }
         }
     }
 
