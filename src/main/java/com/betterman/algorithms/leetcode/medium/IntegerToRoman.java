@@ -1,7 +1,5 @@
 package com.betterman.algorithms.leetcode.medium;
 
-import java.util.ArrayList;
-
 /**
  * Created by zhuangda on 12/6/15.
  */
@@ -10,10 +8,10 @@ public class IntegerToRoman {
         public String intToRoman(int num) {
             if (num > 3999 || num < 1) return null;
             char[][] table = new char[][]{
-                {'I', 'V', 'X'},
-                {'X', 'L', 'C'},
-                {'C', 'D', 'M'},
-                {'M', '*', '#'}
+                    {'I', 'V', 'X'},
+                    {'X', 'L', 'C'},
+                    {'C', 'D', 'M'},
+                    {'M', '*', '#'}
             };
 
             int i = 0;

@@ -6,6 +6,13 @@ import java.util.Set;
 /**
  * Created by zhuangda on 11/9/15.
  */
+
+/**
+ * Given an array of integers, every element appears twice except for one. Find that single one.
+ *
+ * Note: Your algorithm should have a linear runtime complexity. Could you implement it without
+ * using extra memory?
+ */
 public class SingleNumber {
     public class Solution {
         public int singleNumber(int[] nums) {
@@ -27,8 +34,7 @@ public class SingleNumber {
         }
 
         /**
-         * Without extra space
-         * XOR of two equal numbers is 0 : a^a=0. This is the main idea of the
+         * Without extra space XOR of two equal numbers is 0 : a^a=0. This is the main idea of the
          * algorithm.
          */
         public int singleNumber2(int[] nums) {

@@ -8,6 +8,8 @@ import java.util.Map;
  */
 public class FlipGameII {
     public class Solution {
+        //there is at most 2^n to transform the original string.
+        //since already processed cases are in map, so that time complexity: O(2^n)
         public boolean canWin(String s) {
             return canWin(s, new HashMap());
         }

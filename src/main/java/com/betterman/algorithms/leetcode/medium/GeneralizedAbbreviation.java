@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by zhuangda on 2/28/16.
  */
-public class GneralizedAbbreviation {
+public class GeneralizedAbbreviation {
     public class Solution {
         public List<String> generateAbbreviations(String word) {
             List<String> ans = new ArrayList();
