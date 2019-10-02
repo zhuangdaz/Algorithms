@@ -28,6 +28,8 @@ public class BinaryTreeMaximumPathSum {
         int right = Math.max(0, maxPathDown(root.right));
 
         maxSum = Math.max(maxSum, left + root.val + right);
+        String s = "ds";
+        s.split(",");
 
         return Math.max(left, right) + root.val;
     }
