@@ -1,5 +1,6 @@
 package com.betterman.algorithms.boston.trie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -105,6 +106,10 @@ class WordDictionary {
             }
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        int[][] dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
     }
 }
 
