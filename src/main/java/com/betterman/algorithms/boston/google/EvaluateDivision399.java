@@ -71,6 +71,14 @@ public class EvaluateDivision399 {
         return -1;
     }
 
+    /**
+     * Time: O(V + E). find() is constant time after path compression.
+     * Space: O(V)  V is number of distinct strings from equations.
+     * @param equations
+     * @param values
+     * @param queries
+     * @return
+     */
 
     public double[] calcEquationUnionFind(List<List<String>> equations, double[] values, List<List<String>> queries) {
         Map<String, String> roots = new HashMap();
