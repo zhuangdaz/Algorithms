@@ -7,6 +7,13 @@ public class TwoSum {
 
   class Solution {
 
+    /**
+     * time: O(n)
+     * space: O(n)
+     * @param nums
+     * @param target
+     * @return
+     */
     public int[] twoSum(int[] nums, int target) {
       Map<Integer, Integer> map = new HashMap();
 
